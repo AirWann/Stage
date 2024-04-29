@@ -1,0 +1,89 @@
+\documentclass[12pt, a4paper]{article}
+
+
+\usepackage[T1]{fontenc}    % Encodage des accents
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc} 
+\usepackage{numprint}       % Histoire que les chiffres soient bien
+\usepackage{biblatex} 
+\addbibresource{biblio.bib}
+\usepackage{amsmath}        % La base pour les maths
+%\usepackage{mathrsfs}       % Quelques symboles supplémentaires
+%\usepackage{amsfonts}       % Des fontes, eg pour \mathbb.
+
+
+\usepackage[svgnames]{xcolor} % De la couleur
+\usepackage{geometry}       % Gérer correctement la taille
+
+\setlength{\marginparwidth}{2cm}
+\usepackage{todonotes}
+\usepackage{graphicx} % inclusion des graphiques
+\usepackage{wrapfig}  % Dessins dans le texte.
+\usepackage{mdframed}
+\usepackage{thmbox}
+\usepackage{tikz}     % Un package pour les dessins
+\usepackage{tikz-cd}
+\usetikzlibrary{cd, automata,positioning,arrows}
+\usepackage[toc,page]{appendix}
+\usepackage{contour}
+\usepackage[normalem]{ulem}
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.6pt}
+\usepackage{float}
+%\usepackage{scrhack}
+%\usepackage{fix-cm}
+\usepackage{mathtools}
+\usepackage{amssymb, bm}
+%\usepackage{etoolbox}
+\usepackage{xparse}
+\usepackage{newpxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{stmaryrd}
+\usepackage{adjustbox}
+
+
+\newcommand{\ul}[1]{%
+	\uline{\phantom{#1}}%
+	\llap{\contour{white}{#1}}%
+}
+\hyphenpenalty 500
+
+\newcommand{\newlemme}[1]{\newtheorem[S]{#1}[cpt]{Lemme}}
+\newcommand{\newdef}[1]{\newtheorem[S]{#1}[cpt]{Définition}}
+\newcommand{\newthm}[1]{\newtheorem[M]{#1}[thm]{Théorème}}
+\newcommand{\newcor}[1]{\newtheorem[S]{#1}[cpt]{Corollaire}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Kinf}{||K||_{\infty}}
+\newcounter{cpt}
+\newcounter{thm}
+
+
+\newcommand{\peter}[1]{\todo[color=blue!30]{\small #1}}
+\newcommand{\peterin}[1]{\todo[color=blue!30,inline]{\small #1}}
+\newcommand{\erwann}[1]{\todo[color=green!30,inline]{\small #1}}
+
+
+\title{Passive learning of symbolic automata}
+\author{Erwann LOULERGUE, \\ supervised by Peter HABERMEHL}
+\date{March - July 2024}
+\begin{document}
+    \maketitle
+	
+	\textit{Prendre l'abstract du sujet de stage éventuellement ?}
+	
+	\newpage
+
+	\section{Introduction}
+	\subsection{Automates symboliques}
+	définir un automate symbolique, une algèbre monotone
+	\subsection{Apprentissage}
+	Parler d'apprentissage acif, passif, peut-être citer ici le résultat de \cite{FFZ} qui amène logiquement la suite
+
+	\newpage
+
+	\section{}
+
+	\printbibliography
+\end{document}
