@@ -43,7 +43,7 @@
 \usepackage{adjustbox}
 
 
-\newcommand{\ul}[1]{%
+\renewcommand{\underline}[1]{%
 	\uline{\phantom{#1}}%
 	\llap{\contour{white}{#1}}%
 }
@@ -55,15 +55,14 @@
 \newcommand{\newcor}[1]{\newtheorem[S]{#1}[cpt]{Corollaire}}
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\A}{\mathcal{A}}
-\newcommand{\Kinf}{||K||_{\infty}}
 \newcounter{cpt}
 \newcounter{thm}
 
 
 \newcommand{\peter}[1]{\todo[color=blue!30]{\small #1}}
 \newcommand{\peterin}[1]{\todo[color=blue!30,inline]{\small #1}}
-\newcommand{\erwann}[1]{\todo[color=green!30,inline]{\small #1}}
-
+\newcommand{\erwann}[1]{\todo[color=green!30]{\small #1}}
+\newcommand{\erwannin}[1]{\todo[color=green!30,inline]{\small #1}}
 
 \title{Passive learning of symbolic automata}
 \author{Erwann LOULERGUE, \\ supervised by Peter HABERMEHL}
@@ -72,18 +71,50 @@
     \maketitle
 	
 	\textit{Prendre l'abstract du sujet de stage éventuellement ?}
+
+
+	\erwannin{Tu peux utiliser \texttt{\textbackslash\! peter{}} pour faire un commentaire dans la marge et \texttt{\textbackslash\! peterin} pour faire un bloc comme celui-ci}
+
+	\erwannin{ce document est encore un embryon, mais n'hésite pas à faire des commentaires, si les choses ne te semblent pas dans l'ordre, etc}
 	
 	\newpage
 
 	\section{Introduction}
-	\subsection{Automates symboliques}
-	définir un automate symbolique, une algèbre monotone
-	\subsection{Apprentissage}
-	Parler d'apprentissage acif, passif, peut-être citer ici le résultat de \cite{FFZ} qui amène logiquement la suite
+	\subsection{Symbolic automata}
+	Définir :
+	\begin{itemize}
+		\item Boolean algebra, monotonicity : (Exemples : intervalles (monotone), propositionelle (non monotone).)
+		\item SFA
+		\item Neat, normalized SFAs
+	\end{itemize}
 
+
+	Parler des opérations classiques pour mieux placer le modèle peut-être ?
+	\subsection{Automata learning}
+	Parler d'apprentissage actif, passif, peut-être citer ici le résultat de \cite{FFZ} qui amène logiquement la suite
+
+	defs à poser :
+	\begin{itemize}
+		\item active learning
+		\item passive learning : 
+		\begin{itemize}
+			\item characteristic set
+			\item learning in the limit
+			\item efficient identification
+		\end{itemize}
+	\end{itemize}
 	\newpage
+	\section{Learning SFAs}
 
-	\section{}
+	In \cite{FFZ}, the authors have shown that SFAs over a monotonic algebra are efficiently identifiable,
+ but SFAs over the boolean algebra are not efficiently identifiable unless $P=NP$. The former fact is a positive result, but the algorithm provided had cases where it would only return the PTA of the given sample (thus learning nothing). The latter shows there can be no generic algorithm for the non-monotonic case that would run in polynomial time and admit polynomial-size characteristic samples. 
 
+ Learning a symbolic automaton from sampled data runs into the problem of deciding how to identify letter that aren't in the sample. For example, say the sample contains 0 as a positive example and 100 as a negative one. The automaton learnt could accept letters from 0 to 99, or reject all letters from 1 to 100, or accept from 0 to 49 and reject above 50, and still be coherent. Note that this inherent to this precise situation : in active learning, further queries could resolve this issue, and in learning DFAs, the alphabet is finite and no line has to be drawn.
+
+
+	We define an algorithm to learn symbolic automata over any \textit{monotonic} algebra, inspired by RTI \cite{VWW}. RTI was defined in the case of timed automata, that simultaneously recognize both a word and a sequence of numbers representing \textit{timings} of the letters from that word. In our case, there are no letters, only timings, as we consider our intervals as windows in time.
+
+	The algorithm uses a red-blue framework : red states are states we have finished identifying, blue states are candidates for becoming red (that might still need more work). Note that there will be states that are neither red nor blue. The transition guards are built in a top-down approach, thus are initially all set to $\top$ and the only thing distinguishing strings from the sample are their length. In order to learn, the algorithm tries
+	
 	\printbibliography
 \end{document}
